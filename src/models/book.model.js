@@ -1,16 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+// const bcrypt = require('bcryptjs')
 
-const productSchema = new mongoose.Schema(
+const bookSchema = new mongoose.Schema(
     {
-        product_name : {
+        book_name : {
             type : String,
             trim : true
         },
-        product_price : {
+        book_price : {
             type : String,
             trim : true
         },
-        product_desc : {
+        author_name : {
             type : String,
             trim : true
         },
@@ -25,5 +26,5 @@ const productSchema = new mongoose.Schema(
     }
 );
 
-const Product = mongoose.model('Product',productSchema);
-module.exports = Product;
+const Book = mongoose.model('Book',bookSchema);
+module.exports = Book;

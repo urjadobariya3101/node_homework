@@ -1,27 +1,27 @@
-const { userService } = require('../services');
+const { bookService } = require('../services');
 
-/** create user */
-const createUser = async (req, res) => {
+/** create book */
+const createBook = async (req, res) => {
     try {
         const reqBody = req.body;
 
-        const user = await userService.createUser(reqBody);
-        if (!user) {
+        const book = await bookService.createBook(reqBody);
+        if (!book) {
             throw new Error("Something went wrong, please try again or later!");
         }
 
         res.status(200).json({
             success: true,
-            message: "User create successfully!",
-            data: { user }
+            message: "Book create successfully!",
+            data: { book }
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
 };
 
-/** Get user list */
-const getUserList = async (req, res) => {
+/** Get book list */
+const getBookList = async (req, res) => {
     try {
         const { search, ...options } = req.query;
         let filter = {};
@@ -33,11 +33,11 @@ const getUserList = async (req, res) => {
             ];
         }
 
-        const getList = await userService.getUserList(filter, options);
+        const getList = await bookService.getBookList(filter, options);
 
         res.status(200).json({
             success: true,
-            message: "Get user list successfully!",
+            message: "Get book list successfully!",
             data: getList,
         });
     }
@@ -47,6 +47,6 @@ const getUserList = async (req, res) => {
 };
 
 module.exports = {
-    createUser,
-    getUserList
+    createBook,
+    getBookList
 }
