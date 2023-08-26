@@ -1,27 +1,27 @@
-const { bookService } = require('../services');
+const { busService } = require('../services');
 
-/** create book */
-const createBook = async (req, res) => {
+/** create bus */
+const createBus = async (req, res) => {
     try {
         const reqBody = req.body;
 
-        const book = await bookService.createBook(reqBody);
-        if (!book) {
+        const bus = await busService.createBus(reqBody);
+        if (!bus) {
             throw new Error("Something went wrong, please try again or later!");
         }
 
         res.status(200).json({
             success: true,
-            message: "Book create successfully!",
-            data: { book }
+            message: "Bus create successfully!",
+            data: { bus }
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
 };
 
-/** Get book list */
-const getBookList = async (req, res) => {
+/** Get bus list */
+const getBusList = async (req, res) => {
     try {
         const { search, ...options } = req.query;
         let filter = {};
@@ -33,11 +33,11 @@ const getBookList = async (req, res) => {
             ];
         }
 
-        const getList = await bookService.getBookList(filter, options);
+        const getList = await busService.getBusList(filter, options);
 
         res.status(200).json({
             success: true,
-            message: "Get book list successfully!",
+            message: "Get bus list successfully!",
             data: getList,
         });
     }
@@ -46,19 +46,19 @@ const getBookList = async (req, res) => {
     }
 };
 
-/** Delete book */
-const deleteBook = async (req, res) => {
+/** Delete bus */
+const deleteBus = async (req, res) => {
     try {
-        const bookId = req.params.bookId;
-        const bookExists = await bookService.getBookById(bookId);
-        if (!bookExists) {
-            throw new Error("Book not found!");
+        const busId = req.params.busId;
+        const busExists = await busService.getBusById(busId);
+        if (!busExists) {
+            throw new Error("Bus not found!");
         }
 
-        await bookService.deleteBook(bookId);
+        await busService.deleteBus(busId);
         res.status(200).json({
             success: true,
-            message: "Book delete successfully!",
+            message: "Bus delete successfully!",
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
@@ -66,7 +66,7 @@ const deleteBook = async (req, res) => {
 };
 
 module.exports = {
-    createBook,
-    getBookList,
-    deleteBook
+    createBus,
+    getBusList,
+    deleteBus
 }

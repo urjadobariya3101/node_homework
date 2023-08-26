@@ -1,27 +1,27 @@
-const { bookService } = require('../services');
+const { jwelleryService } = require('../services');
 
-/** create book */
-const createBook = async (req, res) => {
+/** create jwellery */
+const createJwellery = async (req, res) => {
     try {
         const reqBody = req.body;
 
-        const book = await bookService.createBook(reqBody);
-        if (!book) {
+        const jwellery = await jwelleryService.createJwellery(reqBody);
+        if (!jwellery) {
             throw new Error("Something went wrong, please try again or later!");
         }
 
         res.status(200).json({
             success: true,
-            message: "Book create successfully!",
-            data: { book }
+            message: "Jwellery create successfully!",
+            data: { jwellery }
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
 };
 
-/** Get book list */
-const getBookList = async (req, res) => {
+/** Get jwellery list */
+const getJwelleryList = async (req, res) => {
     try {
         const { search, ...options } = req.query;
         let filter = {};
@@ -33,11 +33,11 @@ const getBookList = async (req, res) => {
             ];
         }
 
-        const getList = await bookService.getBookList(filter, options);
+        const getList = await jwelleryService.getJwelleryList(filter, options);
 
         res.status(200).json({
             success: true,
-            message: "Get book list successfully!",
+            message: "Get jwellery list successfully!",
             data: getList,
         });
     }
@@ -46,19 +46,19 @@ const getBookList = async (req, res) => {
     }
 };
 
-/** Delete book */
-const deleteBook = async (req, res) => {
+/** Delete jwellery */
+const deleteJwellery = async (req, res) => {
     try {
-        const bookId = req.params.bookId;
-        const bookExists = await bookService.getBookById(bookId);
-        if (!bookExists) {
-            throw new Error("Book not found!");
+        const jwelleryId = req.params.jwelleryId;
+        const jwelleryExists = await jwelleryService.getJwelleryById(jwelleryId);
+        if (!jwelleryExists) {
+            throw new Error("Jwellery not found!");
         }
 
-        await bookService.deleteBook(bookId);
+        await jwelleryService.deleteJwellery(jwelleryId);
         res.status(200).json({
             success: true,
-            message: "Book delete successfully!",
+            message: "Jwellery delete successfully!",
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
@@ -66,7 +66,7 @@ const deleteBook = async (req, res) => {
 };
 
 module.exports = {
-    createBook,
-    getBookList,
-    deleteBook
+    createJwellery,
+    getJwelleryList,
+    deleteJwellery
 }

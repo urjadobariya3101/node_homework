@@ -1,27 +1,27 @@
-const { bookService } = require('../services');
+const { movieService } = require('../services');
 
-/** create book */
-const createBook = async (req, res) => {
+/** create movie */
+const createMovie = async (req, res) => {
     try {
         const reqBody = req.body;
 
-        const book = await bookService.createBook(reqBody);
-        if (!book) {
+        const movie = await movieService.createMovie(reqBody);
+        if (!movie) {
             throw new Error("Something went wrong, please try again or later!");
         }
 
         res.status(200).json({
             success: true,
-            message: "Book create successfully!",
-            data: { book }
+            message: "Movie create successfully!",
+            data: { movie }
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
 };
 
-/** Get book list */
-const getBookList = async (req, res) => {
+/** Get movie list */
+const getMovieList = async (req, res) => {
     try {
         const { search, ...options } = req.query;
         let filter = {};
@@ -33,11 +33,11 @@ const getBookList = async (req, res) => {
             ];
         }
 
-        const getList = await bookService.getBookList(filter, options);
+        const getList = await movieService.getMovieList(filter, options);
 
         res.status(200).json({
             success: true,
-            message: "Get book list successfully!",
+            message: "Get movie list successfully!",
             data: getList,
         });
     }
@@ -46,19 +46,19 @@ const getBookList = async (req, res) => {
     }
 };
 
-/** Delete book */
-const deleteBook = async (req, res) => {
+/** Delete movie */
+const deleteMovie = async (req, res) => {
     try {
-        const bookId = req.params.bookId;
-        const bookExists = await bookService.getBookById(bookId);
-        if (!bookExists) {
-            throw new Error("Book not found!");
+        const movieId = req.params.movieId;
+        const movieExists = await movieService.getMovieById(movieId);
+        if (!movieExists) {
+            throw new Error("Movie not found!");
         }
 
-        await bookService.deleteBook(bookId);
+        await movieService.deleteMovie(movieId);
         res.status(200).json({
             success: true,
-            message: "Book delete successfully!",
+            message: "Movie delete successfully!",
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
@@ -66,7 +66,7 @@ const deleteBook = async (req, res) => {
 };
 
 module.exports = {
-    createBook,
-    getBookList,
-    deleteBook
+    createMovie,
+    getMovieList,
+    deleteMovie
 }

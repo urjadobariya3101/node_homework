@@ -43,5 +43,5 @@ connectDB()
 const server = http.createServer(app);
 
 server.listen(config.port, () => {
-  console.log("server listning port number 3000!");
+  console.log("server listning port number "+config.port);
 });

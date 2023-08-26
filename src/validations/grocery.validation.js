@@ -1,15 +1,16 @@
 const Joi = require("joi");
 
-/** create Category */
-const createCategory = {
+/** create Grocery */
+const createGrocery = {
   body: Joi.object().keys({
-    category_name: Joi.string().required().trim(),
-    category_desc: Joi.string().required().trim()
+    grocery_shop_name: Joi.string().required().trim(),
+    item: Joi.string().required().trim(),
+    price: Joi.number().integer().required()
   }),
 };
 
-/** GEt Category list */
-const getCategoryList = {
+/** GEt Grocery list */
+const getGroceryList = {
   query: Joi.object().keys({
     search: Joi.string().trim().allow(""),
     sortBy: Joi.string().trim().allow(""),
@@ -18,15 +19,15 @@ const getCategoryList = {
   }),
 };
 
-/** Get Category details by id */
+/** Get Grocery details by id */
 const getDetails = {
   params: Joi.object().keys({
-    categoryId: Joi.string().required().trim(),
+    groceryId: Joi.string().required().trim(),
   }),
 };
 
 module.exports = {
-  createCategory,
-  getCategoryList,
+  createGrocery,
+  getGroceryList,
   getDetails
 };

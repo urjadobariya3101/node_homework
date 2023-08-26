@@ -1,27 +1,27 @@
-const { bookService } = require('../services');
+const { groceryService } = require('../services');
 
-/** create book */
-const createBook = async (req, res) => {
+/** create grocery */
+const createGrocery = async (req, res) => {
     try {
         const reqBody = req.body;
 
-        const book = await bookService.createBook(reqBody);
-        if (!book) {
+        const grocery = await groceryService.createGrocery(reqBody);
+        if (!grocery) {
             throw new Error("Something went wrong, please try again or later!");
         }
 
         res.status(200).json({
             success: true,
-            message: "Book create successfully!",
-            data: { book }
+            message: "Grocery create successfully!",
+            data: { grocery }
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
 };
 
-/** Get book list */
-const getBookList = async (req, res) => {
+/** Get grocery list */
+const getGroceryList = async (req, res) => {
     try {
         const { search, ...options } = req.query;
         let filter = {};
@@ -33,11 +33,11 @@ const getBookList = async (req, res) => {
             ];
         }
 
-        const getList = await bookService.getBookList(filter, options);
+        const getList = await groceryService.getGroceryList(filter, options);
 
         res.status(200).json({
             success: true,
-            message: "Get book list successfully!",
+            message: "Get grocery list successfully!",
             data: getList,
         });
     }
@@ -46,19 +46,19 @@ const getBookList = async (req, res) => {
     }
 };
 
-/** Delete book */
-const deleteBook = async (req, res) => {
+/** Delete Grocery */
+const deleteGrocery = async (req, res) => {
     try {
-        const bookId = req.params.bookId;
-        const bookExists = await bookService.getBookById(bookId);
-        if (!bookExists) {
-            throw new Error("Book not found!");
+        const groceryId = req.params.groceryId;
+        const groceryExists = await groceryService.getGroceryById(groceryId);
+        if (!groceryExists) {
+            throw new Error("Grocery not found!");
         }
 
-        await bookService.deleteBook(bookId);
+        await groceryService.deleteGrocery(GrocerygroceryId);
         res.status(200).json({
             success: true,
-            message: "Book delete successfully!",
+            message: "Grocery delete successfully!",
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
@@ -66,7 +66,7 @@ const deleteBook = async (req, res) => {
 };
 
 module.exports = {
-    createBook,
-    getBookList,
-    deleteBook
+    createGrocery,
+    getGroceryList,
+    deleteGrocery
 }

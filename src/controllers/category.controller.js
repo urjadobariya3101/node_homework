@@ -27,7 +27,7 @@ const getCategoryList = async (req, res) => {
         let filter = {};
 
         if (search) {
-            filter.$or = [
+            filter.$or  = [
                 { first_name: { $regex: search, $options: "i" } },
                 { last_name: { $regex: search, $options: "i" } }
             ];
@@ -46,7 +46,27 @@ const getCategoryList = async (req, res) => {
     }
 };
 
+/** Delete category */
+const deleteCategory = async (req, res) => {
+    try {
+        const categoryId = req.params.categoryId;
+        const categoryExists = await categoryService.getCategoryById(categoryId);
+        if (!categoryExists) {
+            throw new Error("Category not found!");
+        }
+
+        await categoryService.deleteCategory(categoryId);
+        res.status(200).json({
+            success: true,
+            message: "Category delete successfully!",
+        });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     createCategory,
-    getCategoryList
+    getCategoryList,
+    deleteCategory
 }

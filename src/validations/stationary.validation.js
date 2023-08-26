@@ -1,15 +1,15 @@
 const Joi = require("joi");
 
-/** create Category */
-const createCategory = {
+/** create Stationary */
+const createStationary = {
   body: Joi.object().keys({
-    category_name: Joi.string().required().trim(),
-    category_desc: Joi.string().required().trim()
+    item: Joi.string().required().trim(),
+    price: Joi.number().integer().required()
   }),
 };
 
-/** GEt Category list */
-const getCategoryList = {
+/** GEt Stationary list */
+const getStationaryList = {
   query: Joi.object().keys({
     search: Joi.string().trim().allow(""),
     sortBy: Joi.string().trim().allow(""),
@@ -18,15 +18,15 @@ const getCategoryList = {
   }),
 };
 
-/** Get Category details by id */
+/** Get Stationary details by id */
 const getDetails = {
   params: Joi.object().keys({
-    categoryId: Joi.string().required().trim(),
+    stationaryId: Joi.string().required().trim(),
   }),
 };
 
 module.exports = {
-  createCategory,
-  getCategoryList,
+  createStationary,
+  getStationaryList,
   getDetails
 };

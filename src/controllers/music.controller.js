@@ -1,27 +1,27 @@
-const { bookService } = require('../services');
+const { musicService } = require('../services');
 
-/** create book */
-const createBook = async (req, res) => {
+/** create music */
+const createMusic = async (req, res) => {
     try {
         const reqBody = req.body;
 
-        const book = await bookService.createBook(reqBody);
-        if (!book) {
+        const music = await musicService.createMusic(reqBody);
+        if (!music) {
             throw new Error("Something went wrong, please try again or later!");
         }
 
         res.status(200).json({
             success: true,
-            message: "Book create successfully!",
-            data: { book }
+            message: "Music create successfully!",
+            data: { music }
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
 };
 
-/** Get book list */
-const getBookList = async (req, res) => {
+/** Get music list */
+const getMusicList = async (req, res) => {
     try {
         const { search, ...options } = req.query;
         let filter = {};
@@ -33,11 +33,11 @@ const getBookList = async (req, res) => {
             ];
         }
 
-        const getList = await bookService.getBookList(filter, options);
+        const getList = await musicService.getMusicList(filter, options);
 
         res.status(200).json({
             success: true,
-            message: "Get book list successfully!",
+            message: "Get music list successfully!",
             data: getList,
         });
     }
@@ -46,19 +46,19 @@ const getBookList = async (req, res) => {
     }
 };
 
-/** Delete book */
-const deleteBook = async (req, res) => {
+/** Delete music */
+const deleteMusic = async (req, res) => {
     try {
-        const bookId = req.params.bookId;
-        const bookExists = await bookService.getBookById(bookId);
-        if (!bookExists) {
-            throw new Error("Book not found!");
+        const musicId = req.params.musicId;
+        const musicExists = await musicService.getMusicById(musicId);
+        if (!musicExists) {
+            throw new Error("Music not found!");
         }
 
-        await bookService.deleteBook(bookId);
+        await musicService.deleteMusic(musicId);
         res.status(200).json({
             success: true,
-            message: "Book delete successfully!",
+            message: "Music delete successfully!",
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
@@ -66,7 +66,7 @@ const deleteBook = async (req, res) => {
 };
 
 module.exports = {
-    createBook,
-    getBookList,
-    deleteBook
+    createMusic,
+    getMusicList,
+    deleteMusic
 }

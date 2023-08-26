@@ -1,15 +1,16 @@
 const Joi = require("joi");
 
-/** create Category */
-const createCategory = {
+/** create Travel */
+const createTravel = {
   body: Joi.object().keys({
-    category_name: Joi.string().required().trim(),
-    category_desc: Joi.string().required().trim()
-  }),
+    traveler_name: Joi.string().required().trim(),
+    destination: Joi.string().required().trim(),
+    pick_up_point: Joi.string().required().trim()
+  })
 };
 
-/** GEt Category list */
-const getCategoryList = {
+/** GEt Travel list */
+const getTravelList = {
   query: Joi.object().keys({
     search: Joi.string().trim().allow(""),
     sortBy: Joi.string().trim().allow(""),
@@ -18,15 +19,15 @@ const getCategoryList = {
   }),
 };
 
-/** Get Category details by id */
+/** Get Travel details by id */
 const getDetails = {
   params: Joi.object().keys({
-    categoryId: Joi.string().required().trim(),
+    travelId: Joi.string().required().trim(),
   }),
 };
 
 module.exports = {
-  createCategory,
-  getCategoryList,
+  createTravel,
+  getTravelList,
   getDetails
 };

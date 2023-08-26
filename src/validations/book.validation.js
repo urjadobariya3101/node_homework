@@ -1,15 +1,15 @@
 const Joi = require("joi");
 
-/** create user */
+/** create book */
 const createBook = {
   body: Joi.object().keys({
     book_name: Joi.string().required().trim(),
-    book_price: Joi.string().required().trim(),
-    author_name: Joi.string().required().trim(),
+    book_price: Joi.number().required(),
+    author_name: Joi.string().required().trim()
   }),
 };
 
-/** GEt user list */
+/** GEt Book list */
 const getBookList = {
   query: Joi.object().keys({
     search: Joi.string().trim().allow(""),
@@ -19,7 +19,15 @@ const getBookList = {
   }),
 };
 
+/** Get Book details by id */
+const getDetails = {
+  params: Joi.object().keys({
+    bookId: Joi.string().required().trim(),
+  }),
+};
+
 module.exports = {
   createBook,
-  getBookList
+  getBookList,
+  getDetails
 };

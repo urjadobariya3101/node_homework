@@ -19,4 +19,12 @@ router.get(
   bookController.getBookList
 );
 
+/** Delete book */
+router.delete(
+  "/delete-book/:bookId",
+  validate(bookValidation.getDetails),
+  bookController.deleteBook
+);
+
 module.exports = router;
+

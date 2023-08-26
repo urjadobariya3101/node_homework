@@ -1,27 +1,27 @@
-const { bookService } = require('../services');
+const { pharmacyService } = require('../services');
 
-/** create book */
-const createBook = async (req, res) => {
+/** create pharmacy */
+const createPharmacy = async (req, res) => {
     try {
         const reqBody = req.body;
 
-        const book = await bookService.createBook(reqBody);
-        if (!book) {
+        const pharmacy = await pharmacyService.createPharmacy(reqBody);
+        if (!pharmacy) {
             throw new Error("Something went wrong, please try again or later!");
         }
 
         res.status(200).json({
             success: true,
-            message: "Book create successfully!",
-            data: { book }
+            message: "Pharmacy create successfully!",
+            data: { pharmacy }
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
 };
 
-/** Get book list */
-const getBookList = async (req, res) => {
+/** Get pharmacy list */
+const getPharmacyList = async (req, res) => {
     try {
         const { search, ...options } = req.query;
         let filter = {};
@@ -33,11 +33,11 @@ const getBookList = async (req, res) => {
             ];
         }
 
-        const getList = await bookService.getBookList(filter, options);
+        const getList = await pharmacyService.getPharmacyList(filter, options);
 
         res.status(200).json({
             success: true,
-            message: "Get book list successfully!",
+            message: "Get pharmacy list successfully!",
             data: getList,
         });
     }
@@ -46,19 +46,19 @@ const getBookList = async (req, res) => {
     }
 };
 
-/** Delete book */
-const deleteBook = async (req, res) => {
+/** Delete pharmacy */
+const deletePharmacy = async (req, res) => {
     try {
-        const bookId = req.params.bookId;
-        const bookExists = await bookService.getBookById(bookId);
-        if (!bookExists) {
-            throw new Error("Book not found!");
+        const pharmacyId = req.params.pharmacyId;
+        const pharmacyExists = await pharmacyService.getPharmacyById(pharmacyId);
+        if (!pharmacyExists) {
+            throw new Error("Pharmacy not found!");
         }
 
-        await bookService.deleteBook(bookId);
+        await pharmacyService.deletePharmacy(pharmacyId);
         res.status(200).json({
             success: true,
-            message: "Book delete successfully!",
+            message: "Pharmacy delete successfully!",
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
@@ -66,7 +66,7 @@ const deleteBook = async (req, res) => {
 };
 
 module.exports = {
-    createBook,
-    getBookList,
-    deleteBook
+    createPharmacy,
+    getPharmacyList,
+    deletePharmacy
 }

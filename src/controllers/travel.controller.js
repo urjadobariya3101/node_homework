@@ -1,27 +1,27 @@
-const { bookService } = require('../services');
+const { travelService } = require('../services');
 
-/** create book */
-const createBook = async (req, res) => {
+/** create travel */
+const createTravel = async (req, res) => {
     try {
         const reqBody = req.body;
 
-        const book = await bookService.createBook(reqBody);
-        if (!book) {
+        const travel = await travelService.createTravel(reqBody);
+        if (!travel) {
             throw new Error("Something went wrong, please try again or later!");
         }
 
         res.status(200).json({
             success: true,
-            message: "Book create successfully!",
-            data: { book }
+            message: "Travel create successfully!",
+            data: { travel }
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
 };
 
-/** Get book list */
-const getBookList = async (req, res) => {
+/** Get travel list */
+const getTravelList = async (req, res) => {
     try {
         const { search, ...options } = req.query;
         let filter = {};
@@ -33,11 +33,11 @@ const getBookList = async (req, res) => {
             ];
         }
 
-        const getList = await bookService.getBookList(filter, options);
+        const getList = await travelService.getTravelList(filter, options);
 
         res.status(200).json({
             success: true,
-            message: "Get book list successfully!",
+            message: "Get travel list successfully!",
             data: getList,
         });
     }
@@ -46,19 +46,19 @@ const getBookList = async (req, res) => {
     }
 };
 
-/** Delete book */
-const deleteBook = async (req, res) => {
+/** Delete travel */
+const deleteTravel = async (req, res) => {
     try {
-        const bookId = req.params.bookId;
-        const bookExists = await bookService.getBookById(bookId);
-        if (!bookExists) {
-            throw new Error("Book not found!");
+        const travelId = req.params.travelId;
+        const travelExists = await travelService.getTravelById(travelId);
+        if (!travelExists) {
+            throw new Error("Travel not found!");
         }
 
-        await bookService.deleteBook(bookId);
+        await travelService.deleteTravel(travelId);
         res.status(200).json({
             success: true,
-            message: "Book delete successfully!",
+            message: "Travel delete successfully!",
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
@@ -66,7 +66,7 @@ const deleteBook = async (req, res) => {
 };
 
 module.exports = {
-    createBook,
-    getBookList,
-    deleteBook
+    createTravel,
+    getTravelList,
+    deleteTravel
 }

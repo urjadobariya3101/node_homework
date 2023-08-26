@@ -19,4 +19,11 @@ router.get(
   categoryController.getCategoryList
 );
 
+/** Delete category */
+router.delete(
+  "/delete-category/:categoryId",
+  validate(categoryValidation.getDetails),
+  categoryController.deleteCategory
+);
+
 module.exports = router;

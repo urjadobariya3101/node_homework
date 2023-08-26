@@ -1,18 +1,16 @@
 const Joi = require("joi");
 
-/** create user */
-const createUser = {
+/** create pharmacy */
+const createPharmacy = {
   body: Joi.object().keys({
-    first_name: Joi.string().required().trim(),
-    last_name: Joi.string().required().trim(),
-    email: Joi.string().required().trim(),
-    password: Joi.string().required().trim(),
+    pharmacy_name: Joi.string().required().trim(),
+    product_name: Joi.string().required().trim(),
     address: Joi.string().required().trim()
   }),
 };
 
-/** GEt user list */
-const getUserList = {
+/** GEt Pharmacy list */
+const getPharmacyList = {
   query: Joi.object().keys({
     search: Joi.string().trim().allow(""),
     sortBy: Joi.string().trim().allow(""),
@@ -21,15 +19,15 @@ const getUserList = {
   }),
 };
 
-/** Get user details by id */
+/** Get Pharmacy details by id */
 const getDetails = {
   params: Joi.object().keys({
-    userId: Joi.string().required().trim(),
+    pharmacyId: Joi.string().required().trim(),
   }),
 };
 
 module.exports = {
-  createUser,
-  getUserList,
+  createPharmacy,
+  getPharmacyList,
   getDetails
 };
