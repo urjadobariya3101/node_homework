@@ -26,8 +26,21 @@ const getDetails = {
   }),
 };
 
+/**book details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    bookId: Joi.string().required().trim()
+  }),
+  body : Joi.object().keys({
+    book_name: Joi.string().required().trim(),
+    book_price: Joi.number().required(),
+    author_name: Joi.string().required().trim()
+  })
+}
+
 module.exports = {
   createBook,
   getBookList,
-  getDetails
+  getDetails,
+  updateDetails
 };

@@ -40,9 +40,26 @@ const deleteSchool = async (schoolId) => {
   return School.findByIdAndDelete(schoolId);
 };
 
+/**
+ * Update school
+ * @param {ObjectId} schoolId
+ * @param {object} updateBody
+ * @returns {Promise<School>}
+ */
+
+const updateDetails = async (schoolId, updateBody) => {
+  return School.findByIdAndUpdate(schoolId, { $set : {updateBody}})
+}
+
+const getSchoolByName = async (school_name) => {
+  return School.findOne({ school_name });
+};
+
 module.exports = {
   createSchool,
   getSchoolList,
   getSchoolById,
-  deleteSchool
+  deleteSchool,
+  updateDetails,
+  getSchoolByName
 };

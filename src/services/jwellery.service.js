@@ -40,9 +40,25 @@ const deleteJwellery = async (jwelleryId) => {
   return Jwellery.findByIdAndDelete(jwelleryId);
 };
 
+/**
+ * update jwellery
+ * @param {ObjectId} jwelleryId
+ * @param {object} updateBody
+ * @returns {Promise<Movie>}
+ */
+const updateDetails = async (jwelleryId, updateBody) => {
+  return Jwellery.findByIdAndUpdate(jwelleryId, { $set: { updateBody } })
+};
+
+const getJwelleryByName = async (jwellery_name) => {
+  return Jwellery.findOne({ jwellery_name });
+};
+
 module.exports = {
   createJwellery,
   getJwelleryList,
   getJwelleryById,
-  deleteJwellery
+  deleteJwellery,
+  updateDetails,
+  getJwelleryByName
 };

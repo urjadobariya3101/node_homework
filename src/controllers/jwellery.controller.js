@@ -65,8 +65,49 @@ const deleteJwellery = async (req, res) => {
     }
 };
 
+/**jwellery update by id */
+const updateDetails = async (req, res) => {
+    try {
+        const jwelleryId = req.params.jwelleryId;
+        const jwelleryExists = await jwelleryService.getJwelleryById(jwelleryId);
+        if (!jwelleryExists) {
+            throw new Error("Jwellery not found...");
+        }
+
+        await jwelleryService.updateDetails(jwelleryId, req.body);
+
+        res
+            .status(200)
+            .json({ success: true, message: "Jwellery details update successfully!" });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error, message });
+    }
+};
+
+/** Get Jwellery details by id */
+const getJwelleryDetails = async (req, res) => {
+    try {
+      const getDetails = await jwelleryService.getJwelleryById(
+        req.params.jwelleryId
+      );
+      if (!getDetails) {
+        throw new Error("Jwellery not found!");
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Jwellery details get successfully!",
+        data: getDetails,
+      });
+    } catch (error) {
+      res.status(400).json({ success: false, message: error.message });
+    }
+  };
+
 module.exports = {
     createJwellery,
     getJwelleryList,
-    deleteJwellery
+    deleteJwellery,
+    updateDetails,
+    getJwelleryDetails
 }

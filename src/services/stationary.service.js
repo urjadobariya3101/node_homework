@@ -40,9 +40,26 @@ const deleteStationary = async (stationaryId) => {
   return Stationary.findByIdAndDelete(stationaryId);
 };
 
+/**
+ * Update stationary
+ * @param {ObjectId} stationaryId
+ * @param {object} updateBody
+ * @returns {Promise<Stationary>}
+ */
+
+const updateDetails = async (stationaryId, updateBody) => {
+  return Stationary.findByIdAndUpdate(stationaryId, { $set : {updateBody}})
+}
+
+const getStationaryByName = async (stationary_name) => {
+  return Stationary.findOne({ stationary_name });
+};
+
 module.exports = {
   createStationary,
   getStationaryList,
   getStationaryById,
-  deleteStationary
+  deleteStationary,
+  updateDetails,
+  getStationaryByName
 };

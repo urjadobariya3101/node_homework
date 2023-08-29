@@ -25,8 +25,20 @@ const getDetails = {
   }),
 };
 
+/**update stationary details */
+const updateDetails = {
+  params : Joi.object().keys({
+    stationaryId : Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    item: Joi.string().required().trim(),
+    price: Joi.number().integer().required()
+  }),
+};
+
 module.exports = {
   createStationary,
   getStationaryList,
-  getDetails
+  getDetails,
+  updateDetails
 };

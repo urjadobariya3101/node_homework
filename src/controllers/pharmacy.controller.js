@@ -65,8 +65,49 @@ const deletePharmacy = async (req, res) => {
     }
 };
 
+/**pharmacy update by id */
+const updateDetails = async (req, res) => {
+    try {
+        const pharmacyId = req.params.pharmacyId;
+        const pharmacyExists = await pharmacyService.getPharmacyById(pharmacyId);
+        if (!pharmacyExists) {
+            throw new Error("Pharmacy not found...");
+        }
+
+        await pharmacyService.updateDetails(pharmacyId, req.body);
+
+        res
+            .status(200)
+            .json({ success: true, message: "Pharmacy details update successfully!" });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error, message });
+    }
+};
+
+/** Get Pharmacy details by id */
+const getPharmacyDetails = async (req, res) => {
+    try {
+      const getDetails = await pharmacyService.getPharmacyById(
+        req.params.pharmacyId
+      );
+      if (!getDetails) {
+        throw new Error("Pharmacy not found!");
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Pharmacy details get successfully!",
+        data: getDetails,
+      });
+    } catch (error) {
+      res.status(400).json({ success: false, message: error.message });
+    }
+  };
+
 module.exports = {
     createPharmacy,
     getPharmacyList,
-    deletePharmacy
+    deletePharmacy,
+    updateDetails,
+    getPharmacyDetails
 }

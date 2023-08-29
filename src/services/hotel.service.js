@@ -19,7 +19,7 @@ const getHotelList = async (filter, options) => {
   const skip = (Number(options.page || 1) - 1) * Number(options.limit || 10);
 
   // return Hotel.find(filter).skip(skip).limit(options.limit).select("-password");
-  return Hotel.find({$or : [{staff : 20}]})
+  return Hotel.find({ $or: [{ staff: 20 }] })
 };
 
 /**
@@ -40,9 +40,25 @@ const deleteHotel = async (hotelId) => {
   return Hotel.findByIdAndDelete(hotelId);
 };
 
+/**
+ * update hotel
+ * @param {ObjectId} hotelId
+ * @param {object} updateBody
+ * @returns {Promise<Hotel>}
+ */
+const updateDetails = async (hotelId, updateBody) => {
+  return Hotel.findByIdAndUpdate(hotelId, { $set: { updateBody } })
+}
+
+const getHotelByName = async (hotel_name) => {
+  return Hotel.findOne({ hotel_name });
+};
+
 module.exports = {
   createHotel,
   getHotelList,
   deleteHotel,
-  getHotelById
+  getHotelById,
+  updateDetails,
+  getHotelByName
 };

@@ -26,8 +26,21 @@ const getDetails = {
   }),
 };
 
+/**music update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    musicId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    song_name: Joi.string().required().trim(),
+    singer_name: Joi.string().required().trim(),
+    lyrics: Joi.string().required().trim()
+  }),
+};
+
 module.exports = {
   createMusic,
   getMusicList,
-  getDetails
+  getDetails,
+  updateDetails
 };

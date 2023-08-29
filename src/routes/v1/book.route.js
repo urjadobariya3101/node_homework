@@ -26,5 +26,12 @@ router.delete(
   bookController.deleteBook
 );
 
+/**Update Book */
+router.put(
+  "/update-book/:bookId",
+  validate(bookValidation.updateDetails),
+  bookController.updateDetails
+)
+
 module.exports = router;
 

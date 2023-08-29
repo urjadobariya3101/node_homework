@@ -26,4 +26,11 @@ router.delete(
   stationaryController.deleteStationary
 );
 
+/**Update stationary */
+router.put(
+  "/update-stationary/:stationaryId",
+  validate(stationaryValidation.updateDetails),
+  stationaryController.updateDetails
+);
+
 module.exports = router;

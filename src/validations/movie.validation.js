@@ -27,8 +27,22 @@ const getDetails = {
   }),
 };
 
+/** movie details update by id */
+const updateDetails = {
+  params : Joi.object().keys({
+    movieId : Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    movie_name: Joi.string().required().trim(),
+    director_name: Joi.string().required().trim(),
+    actor_name: Joi.string().required().trim(),
+    actoress_name: Joi.string().required().trim()
+  })
+}
+
 module.exports = {
   createMovie,
   getMovieList,
-  getDetails
+  getDetails,
+  updateDetails
 };

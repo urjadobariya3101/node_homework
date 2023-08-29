@@ -26,4 +26,11 @@ router.delete(
   musicController.deleteMusic
 );
 
+/**update music */
+router.put(
+  "/update-music/:musicId",
+  validate(musicValidation.updateDetails),
+  musicController.updateDetails
+)
+
 module.exports = router;

@@ -27,8 +27,22 @@ const getDetails = {
   }),
 };
 
+/**school detail update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    schoolId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    school_name: Joi.string().required().trim(),
+    student_name: Joi.string().required().trim(),
+    std: Joi.number().integer().required(),
+    area: Joi.string().required().trim()
+  })
+}
+
 module.exports = {
   createSchool,
   getSchoolList,
-  getDetails
+  getDetails,
+  updateDetails
 };

@@ -18,7 +18,7 @@ const createBus = async (reqBody) => {
 const getBusList = async (filter, options) => {
   // const skip = (Number(options.page || 1) - 1) * Number(options.limit || 10);
   // return Bus.find();
-  return Bus.find({ $or: [{ capacity : 20 }] })
+  return Bus.find({ $or: [{ capacity: 20 }] })
   // return Bus.find(filter).skip(skip).limit(options.limit).select("-password");
 
 };
@@ -41,9 +41,25 @@ const deleteBus = async (busId) => {
   return Bus.findByIdAndDelete(busId);
 };
 
+/**
+ * update bus
+ * @param {ObjectId} busId
+ * @param {object} updateBody
+ * @returns {Promise<Hotel>}
+ */
+const updateDetails = async (busId, updateBody) => {
+  return Bus.findByIdAndUpdate(busId, { $set: { updateBody } })
+};
+
+const getBusByName = async (bus_name) => {
+  return Bus.findOne({ bus_name });
+};
+
 module.exports = {
   createBus,
   getBusList,
   deleteBus,
-  getBusById
+  getBusById,
+  updateDetails,
+  getBusByName
 };

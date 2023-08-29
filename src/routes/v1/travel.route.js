@@ -19,6 +19,13 @@ router.get(
   travelController.getTravelList
 );
 
+/** Update details of travel */
+router.put(
+  "/update-travel/:travelId",
+  validate(travelValidation.updateDetails),
+  travelController.updateDetails
+)
+
 /** Delete travel */
 router.delete(
   "/delete-travel/:travelId",

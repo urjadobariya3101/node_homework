@@ -28,8 +28,23 @@ const getDetails = {
   }),
 };
 
+/** user details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    first_name: Joi.string().trim(),
+    last_name: Joi.string().trim(),
+    email: Joi.string().required().trim(),
+    password: Joi.string().required().trim(),
+    address: Joi.string().required().trim()
+  }),
+};
+
 module.exports = {
   createUser,
   getUserList,
-  getDetails
+  getDetails,
+  updateDetails
 };

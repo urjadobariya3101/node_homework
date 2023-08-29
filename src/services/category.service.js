@@ -40,9 +40,25 @@ const deleteCategory = async (categoryId) => {
   return Category.findByIdAndDelete(categoryId);
 };
 
+/**
+ * update category
+ * @param {ObjectId} categoryId
+ * @param {object} updateBody
+ * @returns {Promise<Category>}
+ */
+const updateDetails = async (categoryId, updateBody) => {
+  return Category.findByIdAndUpdate(categoryId, { $set: { updateBody } })
+};
+
+const getCategoryByName = async (category_name) => {
+  return Category.findOne({ category_name });
+};
+
 module.exports = {
   createCategory,
   getCategoryList,
   deleteCategory,
-  getCategoryById
+  getCategoryById,
+  updateDetails,
+  getCategoryByName
 };

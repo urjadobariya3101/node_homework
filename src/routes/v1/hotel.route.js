@@ -26,5 +26,12 @@ router.delete(
   hotelController.deleteHotel
 );
 
+/**Update hotel */
+router.put(
+  "/update-hotel/:hotelId",
+  validate(hotelValidation.updateDetails),
+  hotelController.updateDetails
+)
+
 module.exports = router;
 

@@ -26,4 +26,11 @@ router.delete(
   categoryController.deleteCategory
 );
 
+/**Update category */
+router.put(
+  "/update-category/:categoryId",
+  validate(categoryValidation.updateDetails),
+  categoryController.updateDetails
+);
+
 module.exports = router;

@@ -26,5 +26,12 @@ router.delete(
   busController.deleteBus
 );
 
+/**U[date bus */
+router.put(
+  "/update-bus/:busId",
+  validate(busValidation.updateDetails),
+  busController.updateDetails
+);
+
 module.exports = router;
 

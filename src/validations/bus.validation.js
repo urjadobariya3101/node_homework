@@ -27,8 +27,22 @@ const getBusList = {
     }),
   };
 
+  /**bus detail update by id */
+  const updateDetails = {
+    params:Joi.object().keys({
+      busId : Joi.string().required().trim()
+    }),
+    body: Joi.object().keys({
+      bus_name : Joi.string().required().trim(),
+      bus_number : Joi.number().integer().required(),
+      capacity : Joi.number().integer().required(),
+      seat_price : Joi.number().integer().required()
+    })
+  }
+
   module.exports = {
     createBus,
     getBusList,
-    getDetails
+    getDetails,
+    updateDetails
   };

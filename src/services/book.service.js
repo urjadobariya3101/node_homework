@@ -41,9 +41,25 @@ const deleteBook = async (bookId) => {
   return Book.findByIdAndDelete(bookId);
 };
 
+/**
+ * update book
+ * @param {ObjectId} bookId
+ * @param {object} updateBody
+ * @returns {Promise<Book>} 
+ */
+const updateDetails = async (bookId, updateBody) => {
+  return Book.findByIdAndUpdate(bookId, {$set : {updateBody}})
+};
+
+const getBookByName = async (book_name) => {
+  return Book.findOne({ book_name });
+};
+
 module.exports = {
   createBook,
   getBookList,
   deleteBook,
-  getBookById
+  getBookById,
+  updateDetails,
+  getBookByName
 };

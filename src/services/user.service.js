@@ -40,9 +40,25 @@ const deleteUser = async (userId) => {
   return User.findByIdAndDelete(userId);
 };
 
+/**
+ * user details update by id
+ * @param {ObjectId} userId
+ * @param {object} updateBody
+ * @returns {Promise<User>}
+ */
+const updateDetails = async (userId, updateBody) => {
+  return User.findByIdAndUpdate(userId, { $set: updateBody });
+};
+
+const getUserByName = async (user_name) => {
+  return User.findOne({ user_name });
+};
+
 module.exports = {
   createUser,
   getUserList,
   deleteUser,
-  getUserById
+  getUserById,
+  updateDetails,
+  getUserByName
 };

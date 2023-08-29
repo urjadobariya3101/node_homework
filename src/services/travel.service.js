@@ -19,7 +19,7 @@ const getTravelList = async (filter, options) => {
   const skip = (Number(options.page || 1) - 1) * Number(options.limit || 10);
 
   // return Travel.find(filter).skip(skip).limit(options.limit).select("-password");
-  return Travel.find({$or : [{destination : "Rajkot"}]})
+  return Travel.find({ $or: [{ destination: "Rajkot" }] })
 };
 
 /**
@@ -40,9 +40,25 @@ const deleteTravel = async (travelId) => {
   return Travel.findByIdAndDelete(travelId);
 };
 
+/**
+ * travel details update by id
+ * @param {ObjectId} travelId
+ * @param {object} updateBody
+ * @returns {Promise<Travel>}
+ */
+const updateDetails = async (travelId, updateBody) => {
+  return Travel.findByIdAndUpdate(travelId, { $set: { updateBody } })
+}
+
+const getTravelByName = async (travel_name) => {
+  return Travel.findOne({ travel_name });
+};
+
 module.exports = {
   createTravel,
   getTravelList,
   deleteTravel,
-  getTravelById
+  getTravelById,
+  updateDetails,
+  getTravelByName
 };

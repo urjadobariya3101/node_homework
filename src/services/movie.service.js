@@ -40,9 +40,25 @@ const deleteMovie = async (movieId) => {
   return Movie.findByIdAndDelete(movieId);
 };
 
+/**
+ * update movie
+ * @param {ObjectId} movieId
+ * @param {object} updateBody
+ * @returns {Promise<Movie>}
+ */
+const updateDetails = async (movieId, updateBody) => {
+  return Movie.findByIdAndUpdate(movieId, {$set : {updateBody}})
+};
+
+const getMovieByName = async (movie_name) => {
+  return Movie.findOne({ movie_name });
+};
+
 module.exports = {
   createMovie,
   getMovieList,
   deleteMovie,
-  getMovieById
+  getMovieById,
+  updateDetails,
+  getMovieByName
 };

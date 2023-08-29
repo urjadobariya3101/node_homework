@@ -40,9 +40,25 @@ const deleteMusic = async (musicId) => {
   return Music.findByIdAndDelete(musicId);
 };
 
+/**
+ * update Music
+ * @param {ObjectId} musicId
+ * @param {object} updateBody
+ * @returns {Promise<Music>}
+ */
+const updateDetails = async (musicId, updateBody) => {
+  return Music.findByIdAndUpdate(musicId, {$set : {updateBody}})
+};
+
+const getMusicByName = async (music_name) => {
+  return Music.findOne({ music_name });
+};
+
 module.exports = {
   createMusic,
   getMusicList,
   deleteMusic,
-  getMusicById
+  getMusicById,
+  updateDetails,
+  getMusicByName
 };

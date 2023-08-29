@@ -65,8 +65,49 @@ const deleteMusic = async (req, res) => {
     }
 };
 
+/**music update by id */
+const updateDetails = async (req, res) => {
+    try {
+        const musicId = req.params.musicId;
+        const musicExists = await musicService.getMusicById(musicId);
+        if (!musicExists) {
+            throw new Error("Music not found...");
+        }
+
+        await musicService.updateDetails(musicId, req.body);
+
+        res
+            .status(200)
+            .json({ success: true, message: "Music details update successfully!" });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error, message });
+    }
+};
+
+/** Get Musicdetails by id */
+const getMusicDetails = async (req, res) => {
+    try {
+      const getDetails = await musicService.getMusicById(
+        req.params.musicId
+      );
+      if (!getDetails) {
+        throw new Error("Musicnot found!");
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Musicdetails get successfully!",
+        data: getDetails,
+      });
+    } catch (error) {
+      res.status(400).json({ success: false, message: error.message });
+    }
+  };
+
 module.exports = {
     createMusic,
     getMusicList,
-    deleteMusic
+    deleteMusic,
+    updateDetails,
+    getMusicDetails
 }
