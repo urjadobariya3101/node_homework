@@ -45,7 +45,7 @@ const deleteBook = async (bookId) => {
  * update book
  * @param {ObjectId} bookId
  * @param {object} updateBody
- * @returns {Promise<Book>} 
+ * @returns {Promise<Book>}
  */
 const updateDetails = async (bookId, updateBody) => {
   return Book.findByIdAndUpdate(bookId, {$set : {updateBody}})
