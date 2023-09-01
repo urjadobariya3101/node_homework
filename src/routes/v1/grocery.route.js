@@ -2,6 +2,7 @@ const express = require("express");
 const { groceryValidation } = require("../../validations");
 const { groceryController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
   "/create-grocery",
   validate(groceryValidation.createGrocery),
+  auth(),
   groceryController.createGrocery
 );
 
@@ -16,6 +18,7 @@ router.post(
 router.get(
   "/list",
   validate(groceryValidation.getGroceryList),
+  auth(),
   groceryController.getGroceryList
 );
 
@@ -23,6 +26,7 @@ router.get(
 router.delete(
   "/delete-grocery/:groceryId",
   validate(groceryValidation.getDetails),
+  auth(),
   groceryController.deleteGrocery
 );
 
@@ -30,6 +34,7 @@ router.delete(
 router.put(
   "/update-grocery/:groceryId",
   validate(groceryValidation.updateDetails),
+  auth(),
   groceryController.updateDetails
 )
 

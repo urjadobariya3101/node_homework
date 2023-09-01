@@ -2,6 +2,7 @@ const express = require('express');
 const { schoolValidation } = require('../../validations');
 const { schoolController } = require('../../controllers');
 const validate = require('../../middlewares/validate');
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
     "/create-school",
     validate(schoolValidation.createSchool),
+    auth(),
     schoolController.createSchool
   );
 
@@ -16,6 +18,7 @@ router.post(
   router.get(
     "/list",
     validate(schoolValidation.getSchoolList),
+    auth(),
     schoolController.getSchoolList
   );
 
@@ -23,6 +26,7 @@ router.post(
 router.delete(
   "/delete-school/:schoolId",
   validate(schoolValidation.getDetails),
+  auth(),
   schoolController.deleteSchool
 );
 
@@ -30,6 +34,7 @@ router.delete(
 router.put(
   "/update-school/:schoolId",
   validate(schoolValidation.updateDetails),
+  auth(),
   schoolController.updateDetails
 )
 

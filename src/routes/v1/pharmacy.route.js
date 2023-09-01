@@ -2,6 +2,7 @@ const express = require("express");
 const { pharmacyValidation } = require("../../validations");
 const { pharmacyController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
   "/create-pharmacy",
   validate(pharmacyValidation.createPharmacy),
+  auth(),
   pharmacyController.createPharmacy
 );
 
@@ -16,6 +18,7 @@ router.post(
 router.get(
   "/list",
   validate(pharmacyValidation.getPharmacyList),
+  auth(),
   pharmacyController.getPharmacyList
 );
 
@@ -23,6 +26,7 @@ router.get(
 router.delete(
   "/delete-pharmacy/:pharmacyId",
   validate(pharmacyValidation.getDetails),
+  auth(),
   pharmacyController.deletePharmacy
 );
 
@@ -30,6 +34,7 @@ router.delete(
 router.put(
   "/update-pharmacy/:pharmacyId",
   validate(pharmacyValidation.updateDetails),
+  auth(),
   pharmacyController.updateDetails
 );
 

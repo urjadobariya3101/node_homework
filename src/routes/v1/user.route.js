@@ -2,6 +2,7 @@ const express = require("express");
 const { userValidation } = require("../../validations");
 const { userController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
   "/create-user",
   validate(userValidation.createUser),
+  auth(),
   userController.createUser
 );
 
@@ -16,6 +18,7 @@ router.post(
 router.get(
   "/list",
   validate(userValidation.getUserList),
+  auth(),
   userController.getUserList
 );
 
@@ -23,6 +26,7 @@ router.get(
 router.put(
   "/update-user/:userId",
   validate(userValidation.updateDetails),
+  auth(),
   userController.updateDetails
 );
 
@@ -30,6 +34,7 @@ router.put(
 router.delete(
   "/delete-user/:userId",
   validate(userValidation.getDetails),
+  auth(),
   userController.deleteUser
 );
 

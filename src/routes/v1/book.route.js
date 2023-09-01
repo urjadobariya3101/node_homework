@@ -2,6 +2,7 @@ const express = require("express");
 const { bookValidation } = require("../../validations");
 const { bookController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
+const auth = require("../../middlewares/auth")
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
   "/create-book",
   validate(bookValidation.createBook),
+  auth(),
   bookController.createBook
 );
 
@@ -16,6 +18,7 @@ router.post(
 router.get(
   "/list",
   validate(bookValidation.getBookList),
+  auth(),
   bookController.getBookList
 );
 
@@ -23,6 +26,7 @@ router.get(
 router.delete(
   "/delete-book/:bookId",
   validate(bookValidation.getDetails),
+  auth(),
   bookController.deleteBook
 );
 
@@ -30,6 +34,7 @@ router.delete(
 router.put(
   "/update-book/:bookId",
   validate(bookValidation.updateDetails),
+  auth(),
   bookController.updateDetails
 )
 

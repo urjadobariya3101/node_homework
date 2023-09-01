@@ -2,6 +2,7 @@ const express = require("express");
 const { movieValidation } = require("../../validations");
 const { movieController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
   "/create-movie",
   validate(movieValidation.createMovie),
+  auth(),
   movieController.createMovie
 );
 
@@ -16,6 +18,7 @@ router.post(
 router.get(
   "/list",
   validate(movieValidation.getMovieList),
+  auth(),
   movieController.getMovieList
 );
 
@@ -23,6 +26,7 @@ router.get(
 router.delete(
   "/delete-movie/:movieId",
   validate(movieValidation.getDetails),
+  auth(),
   movieController.deleteMovie
 );
 
@@ -30,6 +34,7 @@ router.delete(
 router.put(
   "/update-movie/:movieId",
   validate(movieValidation.updateDetails),
+  auth(),
   movieController.updateDetails
 )
 

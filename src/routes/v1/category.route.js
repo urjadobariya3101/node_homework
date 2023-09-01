@@ -18,6 +18,7 @@ router.post(
 router.get(
   "/list",
   validate(categoryValidation.getCategoryList),
+  auth(),
   categoryController.getCategoryList
 );
 
@@ -25,6 +26,7 @@ router.get(
 router.delete(
   "/delete-category/:categoryId",
   validate(categoryValidation.getDetails),
+  auth(),
   categoryController.deleteCategory
 );
 
@@ -32,6 +34,7 @@ router.delete(
 router.put(
   "/update-category/:categoryId",
   validate(categoryValidation.updateDetails),
+  auth(),
   categoryController.updateDetails
 );
 

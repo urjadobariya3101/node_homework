@@ -2,6 +2,7 @@ const express = require("express");
 const { busValidation } = require("../../validations");
 const { busController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
+const auth = require("../../middlewares/auth")
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
   "/create-bus",
   validate(busValidation.createBus),
+  auth(),
   busController.createBus
 );
 
@@ -16,6 +18,7 @@ router.post(
 router.get(
   "/list",
   validate(busValidation.getBusList),
+  auth(),
   busController.getBusList
 );
 
@@ -23,6 +26,7 @@ router.get(
 router.delete(
   "/delete-bus/:busId",
   validate(busValidation.getDetails),
+  auth(),
   busController.deleteBus
 );
 
@@ -30,6 +34,7 @@ router.delete(
 router.put(
   "/update-bus/:busId",
   validate(busValidation.updateDetails),
+  auth(),
   busController.updateDetails
 );
 

@@ -2,6 +2,7 @@ const express = require('express');
 const { stationaryValidation } = require('../../validations');
 const { stationaryController } = require('../../controllers');
 const validate = require('../../middlewares/validate');
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
     "/create-stationary",
     validate(stationaryValidation.createStationary),
+    auth(),
     stationaryController.createStationary
   );
 
@@ -16,6 +18,7 @@ router.post(
   router.get(
     "/list",
     validate(stationaryValidation.getStationaryList),
+    auth(),
     stationaryController.getStationaryList
   );
 
@@ -23,6 +26,7 @@ router.post(
 router.delete(
   "/delete-stationary/:stationaryId",
   validate(stationaryValidation.getDetails),
+  auth(),
   stationaryController.deleteStationary
 );
 
@@ -30,6 +34,7 @@ router.delete(
 router.put(
   "/update-stationary/:stationaryId",
   validate(stationaryValidation.updateDetails),
+  auth(),
   stationaryController.updateDetails
 );
 

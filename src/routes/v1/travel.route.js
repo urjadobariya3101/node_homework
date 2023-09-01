@@ -2,6 +2,7 @@ const express = require("express");
 const { travelValidation } = require("../../validations");
 const { travelController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
   "/create-travel",
   validate(travelValidation.createTravel),
+  auth(),
   travelController.createTravel
 );
 
@@ -16,6 +18,7 @@ router.post(
 router.get(
   "/list",
   validate(travelValidation.getTravelList),
+  auth(),
   travelController.getTravelList
 );
 
@@ -23,6 +26,7 @@ router.get(
 router.put(
   "/update-travel/:travelId",
   validate(travelValidation.updateDetails),
+  auth(),
   travelController.updateDetails
 )
 
@@ -30,6 +34,7 @@ router.put(
 router.delete(
   "/delete-travel/:travelId",
   validate(travelValidation.getDetails),
+  auth(),
   travelController.deleteTravel
 );
 

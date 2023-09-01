@@ -11,4 +11,5 @@ module.exports.jwelleryController = require("./jwellery.controller");
 module.exports.travelController = require("./travel.controller");
 module.exports.pharmacyController = require("./pharmacy.controller");
 module.exports.groceryController = require("./grocery.controller");
+module.exports.tokenController = require("./token.controller");
 
