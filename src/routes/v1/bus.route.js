@@ -9,32 +9,32 @@ const router = express.Router();
 /** create bus */
 router.post(
   "/create-bus",
-  validate(busValidation.createBus),
   auth(),
+  validate(busValidation.createBus),
   busController.createBus
 );
 
 /** Get bus list */
 router.get(
   "/list",
-  validate(busValidation.getBusList),
   auth(),
+  validate(busValidation.getBusList),
   busController.getBusList
 );
 
 /** Delete bus */
 router.delete(
   "/delete-bus/:busId",
-  validate(busValidation.getDetails),
   auth(),
+  validate(busValidation.getDetails),
   busController.deleteBus
 );
 
 /**U[date bus */
 router.put(
   "/update-bus/:busId",
-  validate(busValidation.updateDetails),
   auth(),
+  validate(busValidation.updateDetails),
   busController.updateDetails
 );
 

@@ -9,32 +9,32 @@ const router = express.Router();
 /** create Stationary */
 router.post(
     "/create-stationary",
-    validate(stationaryValidation.createStationary),
     auth(),
+    validate(stationaryValidation.createStationary),
     stationaryController.createStationary
   );
 
   /** Get stationary list */
   router.get(
     "/list",
-    validate(stationaryValidation.getStationaryList),
     auth(),
+    validate(stationaryValidation.getStationaryList),
     stationaryController.getStationaryList
   );
 
   /** Delete book */
 router.delete(
   "/delete-stationary/:stationaryId",
-  validate(stationaryValidation.getDetails),
   auth(),
+  validate(stationaryValidation.getDetails),
   stationaryController.deleteStationary
 );
 
 /**Update stationary */
 router.put(
   "/update-stationary/:stationaryId",
-  validate(stationaryValidation.updateDetails),
   auth(),
+  validate(stationaryValidation.updateDetails),
   stationaryController.updateDetails
 );
 

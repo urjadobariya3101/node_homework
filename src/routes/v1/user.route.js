@@ -9,32 +9,32 @@ const router = express.Router();
 /** create user */
 router.post(
   "/create-user",
-  validate(userValidation.createUser),
   auth(),
+  validate(userValidation.createUser),
   userController.createUser
 );
 
 /** Get user list */
 router.get(
   "/list",
-  validate(userValidation.getUserList),
   auth(),
+  validate(userValidation.getUserList),
   userController.getUserList
 );
 
 /** user details update by id */
 router.put(
   "/update-user/:userId",
-  validate(userValidation.updateDetails),
   auth(),
+  validate(userValidation.updateDetails),
   userController.updateDetails
 );
 
 /** Delete user */
 router.delete(
   "/delete-user/:userId",
-  validate(userValidation.getDetails),
   auth(),
+  validate(userValidation.getDetails),
   userController.deleteUser
 );
 

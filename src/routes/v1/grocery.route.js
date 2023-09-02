@@ -9,32 +9,32 @@ const router = express.Router();
 /** create grocery */
 router.post(
   "/create-grocery",
-  validate(groceryValidation.createGrocery),
   auth(),
+  validate(groceryValidation.createGrocery),
   groceryController.createGrocery
 );
 
 /** Get grocery list */
 router.get(
   "/list",
-  validate(groceryValidation.getGroceryList),
   auth(),
+  validate(groceryValidation.getGroceryList),
   groceryController.getGroceryList
 );
 
 /** Delete grocery */
 router.delete(
   "/delete-grocery/:groceryId",
-  validate(groceryValidation.getDetails),
   auth(),
+  validate(groceryValidation.getDetails),
   groceryController.deleteGrocery
 );
 
 /** update grocery */
 router.put(
   "/update-grocery/:groceryId",
-  validate(groceryValidation.updateDetails),
   auth(),
+  validate(groceryValidation.updateDetails),
   groceryController.updateDetails
 )
 

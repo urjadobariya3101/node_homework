@@ -9,32 +9,32 @@ const router = express.Router();
 /** create movie */
 router.post(
   "/create-movie",
-  validate(movieValidation.createMovie),
   auth(),
+  validate(movieValidation.createMovie),
   movieController.createMovie
 );
 
 /** Get movie list */
 router.get(
   "/list",
-  validate(movieValidation.getMovieList),
   auth(),
+  validate(movieValidation.getMovieList),
   movieController.getMovieList
 );
 
 /** Delete movie */
 router.delete(
   "/delete-movie/:movieId",
-  validate(movieValidation.getDetails),
   auth(),
+  validate(movieValidation.getDetails),
   movieController.deleteMovie
 );
 
 /**Update movie */
 router.put(
   "/update-movie/:movieId",
-  validate(movieValidation.updateDetails),
   auth(),
+  validate(movieValidation.updateDetails),
   movieController.updateDetails
 )
 

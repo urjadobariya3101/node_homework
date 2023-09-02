@@ -9,32 +9,32 @@ const router = express.Router();
 /** create travel */
 router.post(
   "/create-travel",
-  validate(travelValidation.createTravel),
   auth(),
+  validate(travelValidation.createTravel),
   travelController.createTravel
 );
 
 /** Get travel list */
 router.get(
   "/list",
-  validate(travelValidation.getTravelList),
   auth(),
+  validate(travelValidation.getTravelList),
   travelController.getTravelList
 );
 
 /** Update details of travel */
 router.put(
   "/update-travel/:travelId",
-  validate(travelValidation.updateDetails),
   auth(),
+  validate(travelValidation.updateDetails),
   travelController.updateDetails
 )
 
 /** Delete travel */
 router.delete(
   "/delete-travel/:travelId",
-  validate(travelValidation.getDetails),
   auth(),
+  validate(travelValidation.getDetails),
   travelController.deleteTravel
 );
 

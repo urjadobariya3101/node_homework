@@ -9,32 +9,32 @@ const router = express.Router();
 /** create jwellery */
 router.post(
   "/create-jwellery",
-  validate(jwelleryValidation.createJwellery),
   auth(),
+  validate(jwelleryValidation.createJwellery),
   jwelleryController.createJwellery
 );
 
 /** Get jwellery list */
 router.get(
   "/list",
-  validate(jwelleryValidation.getJwelleryList),
   auth(),
+  validate(jwelleryValidation.getJwelleryList),
   jwelleryController.getJwelleryList
 );
 
 /** Delete jwellery */
 router.delete(
   "/delete-jwellery/:jwelleryId",
-  validate(jwelleryValidation.getDetails),
   auth(),
+  validate(jwelleryValidation.getDetails),
   jwelleryController.deleteJwellery
 );
 
 /**Update jwellery */
 router.put(
   "/update-jwellery/:jwelleryId",
-  validate(jwelleryValidation.updateDetails),
   auth(),
+  validate(jwelleryValidation.updateDetails),
   jwelleryController.updateDetails
 )
 

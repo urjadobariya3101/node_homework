@@ -9,32 +9,32 @@ const router = express.Router();
 /** create category */
 router.post(
   "/create-category",
-  validate(categoryValidation.createCategory),
   auth(),
+  validate(categoryValidation.createCategory),
   categoryController.createCategory
 );
 
 /** Get category list */
 router.get(
   "/list",
-  validate(categoryValidation.getCategoryList),
   auth(),
+  validate(categoryValidation.getCategoryList),
   categoryController.getCategoryList
 );
 
 /** Delete category */
 router.delete(
   "/delete-category/:categoryId",
-  validate(categoryValidation.getDetails),
   auth(),
+  validate(categoryValidation.getDetails),
   categoryController.deleteCategory
 );
 
 /**Update category */
 router.put(
   "/update-category/:categoryId",
-  validate(categoryValidation.updateDetails),
   auth(),
+  validate(categoryValidation.updateDetails),
   categoryController.updateDetails
 );
 

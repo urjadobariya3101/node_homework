@@ -9,32 +9,32 @@ const router = express.Router();
 /** create pharmacy */
 router.post(
   "/create-pharmacy",
-  validate(pharmacyValidation.createPharmacy),
   auth(),
+  validate(pharmacyValidation.createPharmacy),
   pharmacyController.createPharmacy
 );
 
 /** Get pharmacy list */
 router.get(
   "/list",
-  validate(pharmacyValidation.getPharmacyList),
   auth(),
+  validate(pharmacyValidation.getPharmacyList),
   pharmacyController.getPharmacyList
 );
 
 /** Delete pharmacy */
 router.delete(
   "/delete-pharmacy/:pharmacyId",
-  validate(pharmacyValidation.getDetails),
   auth(),
+  validate(pharmacyValidation.getDetails),
   pharmacyController.deletePharmacy
 );
 
 /** update pharmacy */
 router.put(
   "/update-pharmacy/:pharmacyId",
-  validate(pharmacyValidation.updateDetails),
   auth(),
+  validate(pharmacyValidation.updateDetails),
   pharmacyController.updateDetails
 );
 

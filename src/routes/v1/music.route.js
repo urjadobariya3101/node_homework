@@ -9,32 +9,32 @@ const router = express.Router();
 /** create music */
 router.post(
   "/create-music",
-  validate(musicValidation.createMusic),
   auth(),
+  validate(musicValidation.createMusic),
   musicController.createMusic
 );
 
 /** Get music list */
 router.get(
   "/list",
-  validate(musicValidation.getMusicList),
   auth(),
+  validate(musicValidation.getMusicList),
   musicController.getMusicList
 );
 
 /** Delete music */
 router.delete(
   "/delete-music/:musicId",
-  validate(musicValidation.getDetails),
   auth(),
+  validate(musicValidation.getDetails),
   musicController.deleteMusic
 );
 
 /**update music */
 router.put(
   "/update-music/:musicId",
-  validate(musicValidation.updateDetails),
   auth(),
+  validate(musicValidation.updateDetails),
   musicController.updateDetails
 )
 
