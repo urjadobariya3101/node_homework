@@ -2,14 +2,14 @@ const express = require("express");
 const { hotelValidation } = require("../../validations");
 const { hotelController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
-const auth = require("../../middlewares/auth");
+// const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
 /** create hotel */
 router.post(
   "/create-hotel",
-  auth(),
+  // auth(),
   validate(hotelValidation.createHotel),
   hotelController.createHotel
 );
@@ -17,7 +17,7 @@ router.post(
 /** Get hotel list */
 router.get(
   "/list",
-  auth(),
+  // auth(),
   validate(hotelValidation.getHotelList),
   hotelController.getHotelList
 );
@@ -25,7 +25,7 @@ router.get(
 /** Delete hotel */
 router.delete(
   "/delete-hotel/:hotelId",
-  auth(),
+  // auth(),
   validate(hotelValidation.getDetails),
   hotelController.deleteHotel
 );
@@ -33,7 +33,7 @@ router.delete(
 /**Update hotel */
 router.put(
   "/update-hotel/:hotelId",
-  auth(),
+  // auth(),
   validate(hotelValidation.updateDetails),
   hotelController.updateDetails
 )

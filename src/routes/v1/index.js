@@ -12,7 +12,8 @@ const jwelleryRoute=require("./jwellery.route");
 const travelRoute=require("./travel.route");
 const pharmacyRoute=require("./pharmacy.route");
 const groceryRoute=require("./grocery.route");
-const tokenRoute=require("./token.route");
+// const tokenRoute=require("./token.route");
+const productRoute=require("./product.route");
 const router = express.Router();
 
 router.use("/user", userRoute);
@@ -28,6 +29,7 @@ router.use("/jwellery", jwelleryRoute);
 router.use("/travel", travelRoute);
 router.use("/pharmacy", pharmacyRoute);
 router.use("/grocery", groceryRoute);
-router.use("/token", tokenRoute);
+// router.use("/token", tokenRoute);
+router.use("/product", productRoute);
 
 module.exports = router;

@@ -2,14 +2,14 @@ const express = require("express");
 const { busValidation } = require("../../validations");
 const { busController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
-const auth = require("../../middlewares/auth")
+// const auth = require("../../middlewares/auth")
 
 const router = express.Router();
 
 /** create bus */
 router.post(
   "/create-bus",
-  auth(),
+  // auth(),
   validate(busValidation.createBus),
   busController.createBus
 );
@@ -17,15 +17,15 @@ router.post(
 /** Get bus list */
 router.get(
   "/list",
-  auth(),
-  validate(busValidation.getBusList),
-  busController.getBusList
-);
+//   auth(),
+//   validate(busValidation.getBusList),
+//   busController.getBusList
+// );
 
-/** Delete bus */
-router.delete(
-  "/delete-bus/:busId",
-  auth(),
+// /** Delete bus */
+// router.delete(
+//   "/delete-bus/:busId",
+//   // auth(),
   validate(busValidation.getDetails),
   busController.deleteBus
 );
@@ -33,7 +33,7 @@ router.delete(
 /**U[date bus */
 router.put(
   "/update-bus/:busId",
-  auth(),
+  // auth(),
   validate(busValidation.updateDetails),
   busController.updateDetails
 );

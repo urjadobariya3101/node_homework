@@ -1,12 +1,12 @@
-const Joi = require("joi");
+// const Joi = require("joi");
 
-/** Create jsonwebroken  */
-const generateToken = {
-  body: Joi.object({
-    user: Joi.string().required().trim(),
-  }),
-};
+// /** Create jsonwebroken  */
+// const generateToken = {
+//   body: Joi.object({
+//     user: Joi.string().required().trim(),
+//   }),
+// };
 
-module.exports = {
-  generateToken,
-};
+// module.exports = {
+//   generateToken,
+// };

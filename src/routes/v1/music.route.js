@@ -2,14 +2,14 @@ const express = require("express");
 const { musicValidation } = require("../../validations");
 const { musicController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
-const auth = require("../../middlewares/auth");
+// const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
 /** create music */
 router.post(
   "/create-music",
-  auth(),
+  // auth(),
   validate(musicValidation.createMusic),
   musicController.createMusic
 );
@@ -17,7 +17,7 @@ router.post(
 /** Get music list */
 router.get(
   "/list",
-  auth(),
+  // auth(),
   validate(musicValidation.getMusicList),
   musicController.getMusicList
 );
@@ -25,7 +25,7 @@ router.get(
 /** Delete music */
 router.delete(
   "/delete-music/:musicId",
-  auth(),
+  // auth(),
   validate(musicValidation.getDetails),
   musicController.deleteMusic
 );
@@ -33,7 +33,7 @@ router.delete(
 /**update music */
 router.put(
   "/update-music/:musicId",
-  auth(),
+  // auth(),
   validate(musicValidation.updateDetails),
   musicController.updateDetails
 )

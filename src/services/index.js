@@ -11,4 +11,5 @@ module.exports.travelService = require("./travel.service");
 module.exports.pharmacyService = require("./pharmacy.service");
 module.exports.groceryService = require("./grocery.service");
 module.exports.busService = require("./bus.service");
-module.exports.tokenService = require("./token.service");
+// module.exports.tokenService = require("./token.service");
+module.exports.productService = require("./product.service");

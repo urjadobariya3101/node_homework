@@ -7,12 +7,16 @@ const productSchema = new mongoose.Schema(
             trim : true
         },
         product_price : {
-            type : String,
+            type : Number,
             trim : true
         },
         product_desc : {
             type : String,
             trim : true
+        },
+        category : {
+            type : mongoose.Types.ObjectId,
+            ref : "category"
         },
         is_active : {
             type : Boolean,
