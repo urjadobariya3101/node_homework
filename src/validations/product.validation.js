@@ -6,7 +6,6 @@ const createProduct = {
     product_name: Joi.string().required().trim(),
     product_price: Joi.number().integer().required(),
     product_desc: Joi.string().required().trim(),
-    address: Joi.string().required().trim(),
     category: Joi.string().required().trim()
   }),
 };

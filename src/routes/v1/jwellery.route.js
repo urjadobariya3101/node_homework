@@ -2,14 +2,14 @@ const express = require("express");
 const { jwelleryValidation } = require("../../validations");
 const { jwelleryController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
-// const auth = require("../../middlewares/auth");
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
 /** create jwellery */
 router.post(
   "/create-jwellery",
-  // auth(),
+  auth(),
   validate(jwelleryValidation.createJwellery),
   jwelleryController.createJwellery
 );
@@ -17,7 +17,7 @@ router.post(
 /** Get jwellery list */
 router.get(
   "/list",
-  // auth(),
+  auth(),
   validate(jwelleryValidation.getJwelleryList),
   jwelleryController.getJwelleryList
 );
@@ -25,7 +25,7 @@ router.get(
 /** Delete jwellery */
 router.delete(
   "/delete-jwellery/:jwelleryId",
-  // auth(),
+  auth(),
   validate(jwelleryValidation.getDetails),
   jwelleryController.deleteJwellery
 );
@@ -33,7 +33,7 @@ router.delete(
 /**Update jwellery */
 router.put(
   "/update-jwellery/:jwelleryId",
-  // auth(),
+  auth(),
   validate(jwelleryValidation.updateDetails),
   jwelleryController.updateDetails
 )

@@ -93,7 +93,7 @@ const getCategoryDetails = async (req, res) => {
       if (!getDetails) {
         throw new Error("Category not found!");
       }
-  
+
       res.status(200).json({
         success: true,
         message: "Category details get successfully!",

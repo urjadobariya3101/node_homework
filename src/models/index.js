@@ -11,5 +11,5 @@ module.exports.Jwellery = require("./jwellery.model");
 module.exports.Travel = require("./travel.model");
 module.exports.Pharmacy = require("./pharmacy.model");
 module.exports.Grocery = require("./grocery.model");
-// module.exports.Token = require("./token.model");
+module.exports.Token = require("./token.model");
 module.exports.Product = require("./product.model");

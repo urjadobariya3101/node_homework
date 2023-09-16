@@ -19,7 +19,7 @@ const getProductList = async (filter, options) => {
   const skip = (Number(options.page || 1) - 1) * Number(options.limit || 10);
 
   // return Product.find(filter).skip(skip).limit(options.limit).select("-password");
-  return Product.find()
+  return Product.find().populate('category')
 };
 
 /**

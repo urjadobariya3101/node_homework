@@ -2,14 +2,14 @@ const express = require("express");
 const { userValidation } = require("../../validations");
 const { userController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
-// const auth = require("../../middlewares/auth");
+const auth = require("../../middlewares/auth");
 
 const router = express.Router();
 
 /** create user */
 router.post(
   "/create-user",
-  // auth(),
+  auth(),
   validate(userValidation.createUser),
   userController.createUser
 );
@@ -17,7 +17,7 @@ router.post(
 /** Get user list */
 router.get(
   "/list",
-  // auth(),
+  auth(),
   validate(userValidation.getUserList),
   userController.getUserList
 );
@@ -25,7 +25,7 @@ router.get(
 /** user details update by id */
 router.put(
   "/update-user/:userId",
-  // auth(),
+  auth(),
   validate(userValidation.updateDetails),
   userController.updateDetails
 );
@@ -33,7 +33,7 @@ router.put(
 /** Delete user */
 router.delete(
   "/delete-user/:userId",
-  // auth(),
+  auth(),
   validate(userValidation.getDetails),
   userController.deleteUser
 );

@@ -10,12 +10,7 @@ const createCategory = {
 
 /** GEt Category list */
 const getCategoryList = {
-  query: Joi.object().keys({
-    search: Joi.string().trim().allow(""),
-    sortBy: Joi.string().trim().allow(""),
-    limit: Joi.number().integer().allow(""),
-    page: Joi.number().integer().allow(""),
-  }),
+  query: Joi.object().keys(),
 };
 
 /** Get Category details by id */

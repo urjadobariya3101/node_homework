@@ -2,14 +2,14 @@ const express = require("express");
 const { categoryValidation } = require("../../validations");
 const { categoryController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
-// const auth = require("../../middlewares/auth")
+const auth = require("../../middlewares/auth")
 
 const router = express.Router();
 
 /** create category */
 router.post(
   "/create-category",
-  // auth(),
+  auth(),
   validate(categoryValidation.createCategory),
   categoryController.createCategory
 );
@@ -17,7 +17,7 @@ router.post(
 /** Get category list */
 router.get(
   "/list",
-  // auth(),
+  auth(),
   validate(categoryValidation.getCategoryList),
   categoryController.getCategoryList
 );
@@ -25,7 +25,7 @@ router.get(
 /** Delete category */
 router.delete(
   "/delete-category/:categoryId",
-  // auth(),
+  auth(),
   validate(categoryValidation.getDetails),
   categoryController.deleteCategory
 );
@@ -33,7 +33,7 @@ router.delete(
 /**Update category */
 router.put(
   "/update-category/:categoryId",
-  // auth(),
+  auth(),
   validate(categoryValidation.updateDetails),
   categoryController.updateDetails
 );

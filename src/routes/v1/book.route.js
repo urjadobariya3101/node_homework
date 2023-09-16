@@ -2,14 +2,14 @@ const express = require("express");
 const { bookValidation } = require("../../validations");
 const { bookController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
-// const auth = require("../../middlewares/auth")
+const auth = require("../../middlewares/auth")
 
 const router = express.Router();
 
 /** create book */
 router.post(
   "/create-book",
-  // auth(),
+  auth(),
   validate(bookValidation.createBook),
   bookController.createBook
 );
@@ -17,7 +17,7 @@ router.post(
 /** Get book list */
 router.get(
   "/list",
-  // auth(),
+  auth(),
   validate(bookValidation.getBookList),
   bookController.getBookList
 );
@@ -25,7 +25,7 @@ router.get(
 /** Delete book */
 router.delete(
   "/delete-book/:bookId",
-  // auth(),
+  auth(),
   validate(bookValidation.getDetails),
   bookController.deleteBook
 );
@@ -33,7 +33,7 @@ router.delete(
 /**Update Book */
 router.put(
   "/update-book/:bookId",
-  // auth(),
+  auth(),
   validate(bookValidation.updateDetails),
   bookController.updateDetails
 )
